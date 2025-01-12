@@ -1,9 +1,9 @@
 package tables
 
 import (
-	fundamentals "educationStation/support"
 	"fmt"
 	"math/rand"
+	"time"
 )
 
 const (
@@ -11,36 +11,66 @@ const (
 	max = 10
 )
 
-var answer string
+var Answer string
+var AmountOfCorrectAnswers int
+var AmountOfTotalAnswers int
 
-func Multiply() {
+func Exercises() {
 	var choice int
 	fmt.Println("We zullen de tafels tot 10 leren. \n 1. Wil je de tafels rustig leren? \n 2. Wil je de tafels op snelheid leren?")
 
 	fmt.Scan(&choice)
 
-	fmt.Println("We zullen de tafels tot 10 leren \n Geef als antwoord 'q' om te stoppen")
+	switch choice {
+	case 1:
+		Exercise()
+	case 2:
+		fmt.Println("Hoeveel tijd wil je om de tafels te oefenen? \n 1. 30 seconden \n 2. 1 minuut \n 3. 2 minuten, \n 4. 5 minuten")
+		fmt.Scan(&choice)
+		WithTimeLimit(choice)
+	default:
+		fmt.Println("Ongeldige keuze")
+}
+}
 
-	for answer != "q" {
-		switch choice {
+func Exercise() {
+		var correct bool
+		switch rand.Intn(2) {
+		case 0:
+			correct = Multiplication()
 		case 1:
-			WithoutTimeLimit()
-		case 2:
-			fundamentals.SetTimeLimit()
-			Multiplication()
-		default:
-			fmt.Println("Ongeldige keuze")
+			correct = Division()
+		}
+		if correct {
+			AmountOfCorrectAnswers++
+		}
+		AmountOfTotalAnswers++
+}
+
+func WithTimeLimit(choiceOfTime int) {
+	var StayFor int
+	switch choiceOfTime {
+	case 1:
+		StayFor = 30
+	case 2:
+		StayFor = 60
+	case 3:
+		StayFor = 120
+	case 4:
+		StayFor = 300
+	}
+
+	timeout := time.After(time.Duration(StayFor) * time.Second)
+	ticker := time.NewTicker(1 * time.Second)
+	defer ticker.Stop()
+
+	for {
+		select {
+		case <-timeout:
+			fmt.Println("\nTime's up! \nJe hebt", AmountOfCorrectAnswers, "van de", AmountOfTotalAnswers, "vragen goed beantwoord")
+			return
+		case <-ticker.C:
+			Exercise()
 		}
 	}
 }
-	
-	func WithoutTimeLimit() {
-		for answer != "q" {
-			switch rand.Intn(2) {
-			case 0:
-				Multiplication()
-			case 1:
-				Division()
-			}
-		}
-	}

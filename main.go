@@ -6,11 +6,11 @@ import (
 )
 
 func main() {
-	var i int
-	fmt.Println("Wat zou je graag willen leren ?")
+	var choice int
+	fmt.Println("Type q in om te stoppen. \n Wat zou je graag willen leren ?")
 	fmt.Println("1. Wiskunde")
-	fmt.Scan(&i)
-	if i == 1 {
+	fmt.Scan(&choice)
+	if choice == 1 {
 		math.Picker()
 	}
 }

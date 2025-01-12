@@ -11,6 +11,6 @@ func Picker() {
 	fmt.Scan(&choice)
 	switch choice {
 	case 1:
-		Multiplication.Multiply()
+		Multiplication.Exercises()
 	}
 }
