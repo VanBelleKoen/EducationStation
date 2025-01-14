@@ -2,10 +2,13 @@ package support
 
 import (
 	"fmt"
+	"os"
+	"strconv"
 )
 
 func Quit() {
 	fmt.Println("Tot ziens!")
+	os.Exit(0)
 }
 
 func SetTimeLimit() {
@@ -21,7 +24,27 @@ func TimeIsUp() {
 }
 
 func Correct() {
-
 	fmt.Println("Goed gedaan!")
+}
+
+type InputResult struct {
+	IntValue   int
+	StringValue string
+	IsInt      bool
+}
+
+func FetchInput() (InputResult, error) {
+	var input string
+	fmt.Scan(&input)
+	if input == "q" {
+			Quit()
+			return InputResult{}, fmt.Errorf("quit signal received")
+	}
+
+	if value, err := strconv.Atoi(input); err == nil {
+			return InputResult{IntValue: value, IsInt: true}, nil
+	} else {
+			return InputResult{StringValue: input, IsInt: false}, nil
+	}
 }
 

@@ -4,7 +4,6 @@ import (
 	fundamentals "educationStation/support"
 	"fmt"
 	"math/rand"
-	"strconv"
 )
 
 func Multiplication() bool {
@@ -12,12 +11,10 @@ func Multiplication() bool {
 	right := (rand.Intn(max-min+1) + min)
 
 	fmt.Printf("\n %d x %d = ", left, right)
-	fmt.Scan(&Answer)
+	result, _ := fundamentals.FetchInput()
 
-	correct := left * right
-	if Answer == "q" {
-		fundamentals.Quit()
-	} else if ans, err := strconv.Atoi(Answer); err == nil && ans == correct {
+	correct := left * right 
+	if result.IntValue == correct {
 		fmt.Println("Goed gedaan!")
 		return true
 	} else {
