@@ -26,7 +26,7 @@ func Exercises() {
 		Exercise()
 	case 2:
 		fmt.Println("Hoeveel tijd wil je om de tafels te oefenen? \n 1. 30 seconden \n 2. 1 minuut \n 3. 2 minuten, \n 4. 5 minuten")
-		fmt.Scan(&result.IntValue)
+		result, _ := fundamentals.FetchInput()
 		WithTimeLimit(result.IntValue)
 	default:
 		fmt.Println("Ongeldige keuze")

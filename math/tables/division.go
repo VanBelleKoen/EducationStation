@@ -13,11 +13,7 @@ func Division() bool {
     bigNumber := left * right
 
     fmt.Printf("\n %d : %d = ", bigNumber, left)
-    result, err := support.FetchInput()
-    if err != nil {
-        fmt.Println(err)
-        return false
-    }
+    result, _ := support.FetchInput()
 
     if result.IsInt && result.IntValue == right {
         fmt.Println("Goed gedaan!")
