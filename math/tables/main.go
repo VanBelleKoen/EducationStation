@@ -36,6 +36,7 @@ func Exercises() {
 	default:
 		fmt.Println("Ongeldige keuze")
 	}
+	Exercises()
 }
 
 func Exercise() {
