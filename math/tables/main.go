@@ -19,7 +19,7 @@ var (
 )
 
 func Exercises() {
-	fmt.Println("We zullen de tafels tot 10 leren. \n 1. Wil je de tafels rustig leren? \n 2. Wil je de tafels op snelheid leren?")
+	fmt.Println("\nWe zullen de tafels tot 10 leren. \n 1. Wil je de tafels rustig leren? \n 2. Wil je de tafels op snelheid leren?")
 
 	result, _ := fundamentals.FetchInput()
 
